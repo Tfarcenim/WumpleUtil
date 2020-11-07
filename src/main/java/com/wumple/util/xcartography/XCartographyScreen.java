@@ -2,10 +2,14 @@ package com.wumple.util.xcartography;
 
 import javax.annotation.Nullable;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.wumple.util.xmap.XMapAPI;
 
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
+import net.minecraft.client.renderer.IRenderTypeBuffer;
+import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -124,16 +128,17 @@ public class XCartographyScreen extends ContainerScreen<XCartographyContainer>
 		}
 	}
 
-	protected void drawMapItem(@Nullable MapData mapDataIn, int x, int y, float scale)
-	{
-		if (mapDataIn != null)
-		{
-			GlStateManager.pushMatrix();
-			GlStateManager.translatef((float) x, (float) y, 1.0F);
-			GlStateManager.scalef(scale, scale, 1.0F);
-			this.minecraft.gameRenderer.getMapItemRenderer().renderMap(mapDataIn, true);
-			GlStateManager.popMatrix();
+	private void drawMapItem(@Nullable MapData mapDataIn, int x, int y, float scale) {
+		if (mapDataIn != null) {
+			RenderSystem.pushMatrix();
+			RenderSystem.translatef((float)x, (float)y, 1.0F);
+			RenderSystem.scalef(scale, scale, 1.0F);
+			IRenderTypeBuffer.Impl irendertypebuffer$impl = IRenderTypeBuffer.getImpl(Tessellator.getInstance().getBuffer());
+			this.minecraft.gameRenderer.getMapItemRenderer().renderMap(new MatrixStack(), irendertypebuffer$impl, mapDataIn, true, 15728880);
+			irendertypebuffer$impl.finish();
+			RenderSystem.popMatrix();
 		}
+
 	}
 
 	// ---

@@ -1,4 +1,4 @@
-package com.wumple.util.xchest2;
+/*package com.wumple.util.xchest2;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 
@@ -112,4 +112,4 @@ public class XChestTileEntityRenderer<T extends TileEntity & IChestLid> extends 
 		f = 1.0F - f * f * f;
 		p_199346_3_.getLid().rotateAngleX = -(f * ((float) Math.PI / 2F));
 	}
-}
+}*/

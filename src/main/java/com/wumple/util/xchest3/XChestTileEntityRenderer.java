@@ -1,4 +1,4 @@
-package com.wumple.util.xchest3;
+/*package com.wumple.util.xchest3;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 
@@ -103,3 +103,4 @@ public class XChestTileEntityRenderer<T extends TileEntity & IChestLid> extends 
 	}
 
 }
+*/
